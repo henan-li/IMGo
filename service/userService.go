@@ -32,12 +32,12 @@ func (this *userService) CreateUser(info map[string]string) (affected int64) {
 	user.Mobile = info["mobile"]
 	user.Passwd = info["passwd"]
 	user.Avatar = info["avatar"]
-	user.NickName = info["nick_name"]
+	user.Nickname = info["nick_name"]
 	user.Salt = "zxcasd"
 	user.Online = 0
 	user.Token = "zxcasd"
 	user.Memo = info["memo"]
-	user.Creatat = time.Now()
+	user.Createat = time.Now()
 
 	counts := this.checkUser(info["mobile"])
 
