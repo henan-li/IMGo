@@ -1,0 +1,34 @@
+{{define "/user/register.shtml"}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="/asset/css/red.css">
+</head>
+<body>
+
+<h2>this is user register page</h2>
+
+<form action="/user/register" method="post">
+
+    password:<br>
+    <input type="text" name="passwd" value="">
+    <br>
+    Mobile:<br>
+    <input type="text" name="mobile" value="">
+    <br>
+    Avatar:<br>
+    <input type="text" name="avatar" value="">
+    <br>
+    NickName:<br>
+    <input type="text" name="nick_name" value="">
+    <br>
+    Memo:<br>
+    <input type="text" name="memo" value="">
+    <br><br>
+    <input type="submit" value="Submit">
+</form>
+</body>
+</html>
+{{end}}
