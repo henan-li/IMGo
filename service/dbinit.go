@@ -24,7 +24,7 @@ func init() {
 
 	DbEngine.ShowSQL(true)
 	DbEngine.SetMaxOpenConns(2)
-	DbEngine.Sync2(new(model.User))
+	DbEngine.Sync2(new(model.User), new(model.Contact), new(model.Community))
 
 	fmt.Println("init DB...DB is running now")
 }

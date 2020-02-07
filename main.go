@@ -12,6 +12,7 @@ var (
 
 func main() {
 	// handle request
+	http.HandleFunc("/user/login", user.UserLogin)
 	http.HandleFunc("/user/register", user.UserRegister)
 
 	// handle static files

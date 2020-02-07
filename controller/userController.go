@@ -3,7 +3,6 @@ package controller
 import (
 	"net/http"
 	"workplace/IMGo/service"
-	"workplace/IMGo/structManager"
 	"workplace/IMGo/utils"
 )
 
@@ -33,15 +32,25 @@ func (this *userController) UserRegister(writer http.ResponseWriter, request *ht
 	info["memo"] = request.PostFormValue("memo")
 	res := userService.CreateUser(info)
 
-	resp := structManager.H{}
 	if res == 1 {
-		resp.Data = map[string]string{"mobile":info["mobile"],"avatar":info["avatar"],"nick_name":info["nick_name"],"memo":info["memo"]}
-		resp.Msg = "register is done"
-		resp.Code = 1
+		delete(info, "passwd")
+		utils.RespOk(writer, info, "register ok")
 	} else {
-		resp.Data = map[string]string{"mobile":info["mobile"],}
-		resp.Msg = "register is failed, user already registered"
-		resp.Code = -1
+		utils.RespFail(writer, "register fail")
 	}
-	utils.Resp(writer, resp)
+}
+
+func (this *userController) UserLogin(writer http.ResponseWriter, request *http.Request) {
+	request.ParseForm()
+
+	mobile := request.PostForm.Get("mobile")
+	passwd := request.PostForm.Get("passwd")
+
+	user, err := userService.Login(mobile, passwd)
+
+	if err!=nil{
+		utils.RespFail(writer,err.Error())
+	}else{
+		utils.RespOk(writer,user,"")
+	}
 }
