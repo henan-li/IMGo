@@ -68,11 +68,12 @@ func (this *userService) UpdateUser(id int64, kv map[string]interface{}) {
 
 func (this *userService) checkUser(s string) int {
 
-	sql := "select count(*) as num_count from user where mobile = " + s
-	res, _ := DbEngine.QueryString(sql)
-
-	//counts, _ := strconv.Atoi(res[0]["num_count"])
-	counts := len(res)
+	user := model.User{}
+	DbEngine.Where("mobile = ?",s).Get(&user)
+	counts := 0
+	if user.Id != 0{
+		counts = 1
+	}
 	return counts
 }
 

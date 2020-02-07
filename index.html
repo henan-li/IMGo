@@ -12,21 +12,12 @@
 <body>
 
 <header class="mui-bar mui-bar-nav">
-    <h1 class="mui-title">index登录</h1>
+    <h1 class="mui-title">index</h1>
 </header>
 <div class="mui-content" id="pageapp">
-    <form id='login-form' class="mui-input-group">
-        <div class="mui-input-row">
-            <label>账号</label>
-            <input v-model="user.mobile" placeholder="请输入手机号" type="text" class="mui-input-clear mui-input" >
-        </div>
-        <div class="mui-input-row">
-            <label>密码</label>
-            <input v-model="user.passwd" placeholder="请输入密码"  type="password" class="mui-input-clear mui-input" >
-        </div>
-    </form>
+
     <div class="mui-content-padded">
-        <button @click="login"  type="button"  class="mui-btn mui-btn-block mui-btn-primary">登录</button>
+        <a href="/user/login.shtml"><button type="button"  class="mui-btn mui-btn-block mui-btn-primary">登录</button></a>
         <div class="link-area"><a id='reg' href="/user/register.shtml">注册账号</a> <span class="spliter">|</span> <a  id='forgetPassword'>忘记密码</a>
         </div>
     </div>
@@ -59,8 +50,16 @@
                     if(res.code!=0){
                         mui.toast(res.msg)
                     }else{
-                        //location.replace("//127.0.0.1/demo/index.shtml")
                         mui.toast("登录成功,即将跳转")
+                        window.setInterval(function () {
+                            var url = "/chat/index.shtml?id="+res.data.id
+                                +"&token="+res.data.token
+                            // userInfo(res.data)
+                            // userId(res.data.id)
+                            window.location.href= url
+                        },1000)
+
+
                     }
                 })
             },

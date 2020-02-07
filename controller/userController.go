@@ -36,7 +36,7 @@ func (this *userController) UserRegister(writer http.ResponseWriter, request *ht
 		delete(info, "passwd")
 		utils.RespOk(writer, info, "register ok")
 	} else {
-		utils.RespFail(writer, "register fail")
+		utils.RespFail(writer, "register fail, phone number "+info["mobile"]+" has registered")
 	}
 }
 
