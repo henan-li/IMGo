@@ -217,7 +217,7 @@
                         }
                     },
                     showweixin:function(){
-                        mui.alert("请加微信号jiepool-winlion索取")
+
                     } ,
                     showmsg:function(user,msg){
                         var data={
@@ -339,7 +339,7 @@
                     },
                     loadcommunitys:function(){
                         var that = this;
-                        post("contact/loadcommunity",{userid:userId()},function(res){
+                        post("contact/loadgroup",{userid:userId()},function(res){
                             that.communitys = res.rows ||[];
                         })
                     },
@@ -373,7 +373,7 @@
                     },
                     _joincomunity:function(dstobj){
                         var that = this;
-                        post("contact/joincommunity",{dstid:dstobj,"userid":userId()},function(res){
+                        post("contact/joingroup",{dstid:dstobj,"userid":userId()},function(res){
                             if(res.code==0){
                                 mui.toast("添加成功");
 
